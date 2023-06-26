@@ -8,7 +8,8 @@ from folium import plugins
 
 st.set_page_config(page_title="Encuentra tu aparcamiento en Valencia",
                    layout ="wide",
-                   initial_sidebar_state="expanded")
+                   initial_sidebar_state="expanded",
+                   page_icon = "🗺️")
                    
 add_selectbox = st.sidebar.selectbox('Elige el tipo de transporte',('Turismo','Moto','Bicicleta'))
 
