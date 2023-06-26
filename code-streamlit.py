@@ -40,20 +40,37 @@ elif add_selectbox == 'Turismo':
     otros = selec['ALTRES']
 
     fig = go.Figure(data=[
-        go.Bar(name='No Regulados', x=categorias, y=no_regulados, hovertemplate='Nº de plazas no reguladas: %{y}<extra></extra>', marker=dict(color='#6FEDEB')),
-        go.Bar(name='Vados', x=categorias, y=vados, hovertemplate='Nº de vados: %{y}<extra></extra>', marker=dict(color='#EDD458')),
-        go.Bar(name='Parking', x=categorias, y=parking, hovertemplate='Plazas en parkings: %{y}<extra></extra>', marker=dict(color='#A18D2B')),    
-        go.Bar(name='ORA', x = categorias, y=ora, hovertemplate='Plazas en ORA: %{y}<extra></extra>', marker=dict(color='#EDA26F')),
+        go.Bar(name='No Regulados', x=categorias, y=no_regulados, hovertemplate='Nº de plazas no reguladas: %{y}<extra></extra>', marker=dict(color='#E0DB64')),
+        go.Bar(name='Parking', x=categorias, y=parking, hovertemplate='Plazas en parkings: %{y}<extra></extra>', marker=dict(color='#6EE2F4')),    
+        go.Bar(name='ORA', x = categorias, y=ora, hovertemplate='Plazas en ORA: %{y}<extra></extra>', marker=dict(color='#DE9528')),
         go.Bar(name='Otros', x=categorias, y= otros, hovertemplate='Otros tipos de plazas: %{y}<extra></extra>', marker=dict(color='#A3FF9B'))
     ])
 
     fig.update_layout(barmode='stack', 
                     title='¿Cuántas plazas hay por barrio?',
-                    plot_bgcolor = '#3C3C3C', 
-                    paper_bgcolor = '#3C3C3C',
+                    plot_bgcolor = '#675F5F', 
+                    paper_bgcolor = '#675F5F',
                     font=dict(color='#F0F2F6'),
-                    yaxis=dict(showgrid=False))
+                    yaxis=dict(showgrid=False, zeroline=True, zerolinecolor='#F0F2F6'))
+
+    
     fig.update_xaxes(title='Barrios')
     fig.update_yaxes(title='Nº plazas')
+    fig.update_layout(width=1300, height=600)
 
-    st.plotly_chart(fig)
+    container = st.container()
+    with container:
+        container.markdown(
+            f"""
+            <style>
+            .containerStyle {{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: {600}px;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+        container.plotly_chart(fig, use_container_width=True)
