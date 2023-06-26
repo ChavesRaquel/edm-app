@@ -6,12 +6,16 @@ import folium
 from streamlit_folium import st_folium
 from folium import plugins
 
+
 st.set_page_config(page_title="Encuentra tu aparcamiento en Valencia",
                    layout ="wide",
                    initial_sidebar_state="expanded",
                    page_icon = "🗺️")
-                   
-add_selectbox = st.sidebar.selectbox('Elige el tipo de transporte',('Turismo','Moto','Bicicleta'))
+
+st.sidebar.markdown("## Encuentra tu aparcamiento en Valencia")
+                 
+add_selectbox = st.sidebar.selectbox('Elige el tipo de transporte: ',('Turismo','Moto','Bicicleta'))
+
 
 def abrir_html(filename):
     with open(filename, "r") as file:
